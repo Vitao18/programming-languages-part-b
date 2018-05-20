@@ -16,4 +16,14 @@
 ;; Function 2:
 ;; Receives a list of words and a string. Return a copy of the list with every word appended by suffix string
 (define (string-append-map xs suffix)
-  (map (lambda (word) (string-append word suffix)) xs)) 
+  (map (lambda (word) (string-append word suffix)) xs))
+
+;; Function 3:
+;; Receives a list of integers and a number. Returns the ith element of the list, where i is the remainder of number divided by the list length
+(define (list-nth-mod xs number)
+  (cond
+    [(negative? number) (error "list-nth-mod: negative number")]
+    [(null? xs)    (error "list-nth-mod: empty list")]
+    [#t
+     (car (list-tail xs
+     (remainder number (length xs))))]))
