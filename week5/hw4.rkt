@@ -12,3 +12,8 @@
     [(> low high) null]
     [(= low high) (cons low null)]
     [#t           (cons low (sequence (+ low stride) high stride))]))
+
+;; Function 2:
+;; Receives a list of words and a string. Return a copy of the list with every word appended by suffix string
+(define (string-append-map xs suffix)
+  (map (lambda (word) (string-append word suffix)) xs)) 
