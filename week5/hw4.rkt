@@ -27,3 +27,14 @@
     [#t
      (car (list-tail xs
      (remainder number (length xs))))]))
+
+;; Function 4:
+;; Receives a stream and a numbers. Returns a list with the result of the nth values of the stream in order
+(define (stream-for-n-steps stream number)
+  (letrec ([f (lambda (stream counter)
+                (let ([pr (stream)])
+                  (if (= counter 0)
+                      null
+                      (cons (car pr) (f (cdr pr) (- counter 1))))))])
+    (f stream number)))
+                
