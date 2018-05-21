@@ -37,4 +37,12 @@
                       null
                       (cons (car pr) (f (cdr pr) (- counter 1))))))])
     (f stream number)))
-                
+
+;; Function 5:
+;; Create a stream of natural numbers, but every multiple of 5 is negated
+(define funny-number-stream
+  (letrec ([f (lambda (x)
+                (if (= (modulo x 5) 0)
+                    (cons (* -1 x) (lambda () (f (+ x 1))))
+                    (cons x (lambda () (f (+ x 1))))))])
+    (lambda () (f 1))))
