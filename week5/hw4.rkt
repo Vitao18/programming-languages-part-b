@@ -47,9 +47,14 @@
                     (cons x (lambda () (f (+ x 1))))))])
     (lambda () (f 1))))
 
+;; Function 6:
+;; Create a stream of two strings: dan.jpg and dog.jpg.
 (define dan-the-dog
   (letrec ([x (lambda () (cons "dan.jpg" (lambda () y)))]
-           [y (lambda () (cons "dog.jpg" (lambda () x)))])
+           [y (cons "dog.jpg" x)])
   (lambda () (x))))
+
+
+
 
   
