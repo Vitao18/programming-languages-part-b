@@ -46,3 +46,10 @@
                     (cons (* -1 x) (lambda () (f (+ x 1))))
                     (cons x (lambda () (f (+ x 1))))))])
     (lambda () (f 1))))
+
+(define dan-the-dog
+  (letrec ([x (lambda () (cons "dan.jpg" (lambda () y)))]
+           [y (lambda () (cons "dog.jpg" (lambda () x)))])
+  (lambda () (x))))
+
+  
