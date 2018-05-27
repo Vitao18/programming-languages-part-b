@@ -56,7 +56,6 @@
 
 ;; Function 7:
 ;; Given a stream returns a new stream with the ith value v of the stream being replaced by a pair like (0 . v)
-
 (define (stream-add-zero s)
   (letrec ([f (lambda (s)
                 (let ([pr (s)])
@@ -65,7 +64,6 @@
 
 ;; Function 8:
 ;; Given two lists xs and ys, creates a stream with nth-mod element of xs and ys appended together
-
 (define (cycle-lists xs ys)
   (letrec ([f (lambda (x)
                 (cons
