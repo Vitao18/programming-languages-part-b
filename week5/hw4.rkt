@@ -54,7 +54,13 @@
            [y (cons "dog.jpg" x)])
   (lambda () (x))))
 
+;; Function 7:
+;; Given a stream returns a new stream with the ith value v of the stream being replaced by a pair like (0 . v)
 
-
+(define (stream-add-zero s)
+  (letrec ([f (lambda (s)
+                (let ([pr (s)])
+                  (cons (cons 0 (car pr)) (lambda () (f (cdr pr))))))])
+    (lambda () (f s))))
 
   
