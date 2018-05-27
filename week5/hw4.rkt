@@ -63,4 +63,14 @@
                   (cons (cons 0 (car pr)) (lambda () (f (cdr pr))))))])
     (lambda () (f s))))
 
+;; Function 8:
+;; Given two lists xs and ys, creates a stream with nth-mod element of xs and ys appended together
+
+(define (cycle-lists xs ys)
+  (letrec ([f (lambda (x)
+                (cons
+                 (cons (list-nth-mod xs x) (list-nth-mod ys x))
+                 (lambda () (f (+ x 1)))))])
+    (lambda () (f 0))))
   
+
