@@ -70,5 +70,15 @@
                  (cons (list-nth-mod xs x) (list-nth-mod ys x))
                  (lambda () (f (+ x 1)))))])
     (lambda () (f 0))))
-  
+;; Function 9:
+;; Given a vector vec and a value v, iterates through the vector vec and check if each element is a pair. Returns a pair p if the first element of the pair
+;; is v. Returns f if none of the elements of the vector vec are a pair or if none of the first elements if v.
+(define (vector-assoc v vec)
+  (letrec ([f (lambda (i)
+    (cond
+      [(equal? (vector-length vec) i) #f]
+      [(not (pair? (vector-ref vec i))) (f (+ i 1))]
+      [(equal? (car (vector-ref vec i)) v) (vector-ref vec i)]
+      [else (f (+ i 1))]))])
+    (f 0)))
 
