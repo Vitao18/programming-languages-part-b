@@ -49,7 +49,7 @@
 
 ;; Function 6:
 ;; Create a stream of two strings: dan.jpg and dog.jpg.
-(define dan-the-dog
+(define dan-then-dog
   (letrec ([x (lambda () (cons "dan.jpg" (lambda () y)))]
            [y (cons "dog.jpg" x)])
   (lambda () (x))))
@@ -82,3 +82,35 @@
       [else (f (+ i 1))]))])
     (f 0)))
 
+;; Function 10:
+;; Memoization
+(define (cached-assoc xs n)
+  (letrec ([memo (make-vector n #f)]
+           [iter 0]
+           [f (lambda (val)
+               (let ([ans (vector-assoc val memo)])
+                 (if ans
+                     (cdr ans)
+                     (let ([new-ans (assoc val xs)])
+                       (begin
+                         (vector-set! memo iter (cons val new-ans))
+                         (set! iter (if (= (+ 1 iter) n) 0 (+ iter 1)))
+                             new-ans)))))])
+    (lambda (v) (f v))))
+
+;; Function 11:
+;; Macro challenge
+
+(define-syntax while-less
+  (syntax-rules (do)
+    [(while-less e1 do e2)
+     (letrec
+         ([x e1]
+         [f (lambda ()
+              (if (< e2 x)
+                  (begin
+                    (+ x 1)
+                    e2
+                    (f))
+                  #t))])
+       (f))]))
