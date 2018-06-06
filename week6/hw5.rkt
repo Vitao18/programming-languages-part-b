@@ -22,7 +22,12 @@
 
 ;; Problem 1
 
+(define (racketlist->mupllist e)
+  (cond [(null? e) (aunit)]
+        [#t (apair (car e) (racketlist->mupllist (cdr e)))]))
 ;; CHANGE (put your solutions here)
+
+
 
 ;; Problem 2
 
